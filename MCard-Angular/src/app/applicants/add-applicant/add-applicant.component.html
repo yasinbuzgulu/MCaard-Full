@@ -1,0 +1,97 @@
+<hr>
+<h3>Add Applicant</h3>
+<form [formGroup]="applicantForm" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <div class="cross-validation"
+         [class.cross-validation-error]="applicantForm.errors?.identityRevealed && (applicantForm.touched || applicantForm.dirty)">
+      <div class="form-group">
+        <div class="form-group">
+          <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <input type="text" class="form-control" placeholder="Enter Name" formControlName="name" id="name"
+                   required="required">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+              <div *ngIf="name.errors?.required">Name is required.</div>
+              <div *ngIf="name.errors">Name should be english characters.</div>
+              <div *ngIf="name.errors?.minlength">Name must be at least 2 characters long.</div>
+              <div *ngIf="name.errors?.maxlength">Name must be at top 43 characters long.</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="mb-3">
+            <label class="form-label">Surname</label>
+            <input type="text" class="form-control" placeholder="Enter Surname" formControlName="surname" id="surname">
+            <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger">
+              <div *ngIf="surname.errors?.required">Surname is required.</div>
+              <div *ngIf="surname.errors">Surname should be english characters.</div>
+              <div *ngIf="surname.errors?.minlength">Surname must be at least 2 characters long.</div>
+              <div *ngIf="surname.errors?.maxlength">Surname must be at top 20 characters long.</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="mb-3">
+            <label class="form-label">Citizenship Number</label>
+            <input type="number" class="form-control" placeholder="Enter Citizenship Number"
+                   formControlName="citizenNumber" id="citizenNumber">
+            <div *ngIf="citizenNumber.invalid && (citizenNumber.dirty || citizenNumber.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="citizenNumber.errors?.required">Citizenship Number is required .</div>
+              <div *ngIf="citizenNumber.errors?.min">Citizenship Number can not be negative .</div>
+              <div *ngIf="citizenNumber.errors">Invalid Citizenship Number. Please check 11 digits, even number and real
+                one.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="mb-3">
+            <label class="form-label">Birth Date</label>
+            <input type="text" class="form-control" placeholder="MM/DD/YYYY" formControlName="birthDate">
+            <div *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)" class="alert alert-danger">
+              <div *ngIf="birthDate.errors?.required">BirthDate is required.</div>
+              <div *ngIf="birthDate.errors">Invalid Birth Date.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Age Group</label>
+          <select class="form-control" formControlName="typeBasedOnAge" id="typeBasedOnAge" required="required">
+            <option value="" disabled selected>Please select age group</option>
+            <option value="Çocuk">Kid</option>
+            <option value="Normal">Normal</option>
+            <option value="Yaşlı">Elder</option>
+          </select>
+          <div *ngIf="typeBasedOnAge.invalid && (typeBasedOnAge.dirty || typeBasedOnAge.touched)"
+               class="alert alert-danger">
+            <div *ngIf="typeBasedOnAge.errors?.required">Age group is required.</div>
+          </div>
+        </div>
+        <h1></h1>
+        <h1></h1>
+        <div class="form-group">
+          <label>Educational status</label>
+          <select class="form-control" formControlName="typeBasedOnEducation" id="typeBasedOnEducation"
+                  required="required">
+            <option value="" disabled>Please select educational status</option>
+            <option value="Öğrenci">Student</option>
+            <option value="Sivil">Civil</option>
+            <option value="--">Neither</option>
+          </select>
+          <div *ngIf="typeBasedOnEducation.invalid && (typeBasedOnEducation.dirty || typeBasedOnEducation.touched)"
+               class="alert alert-danger">
+            <div *ngIf="typeBasedOnEducation.errors?.required">Educational status is required.</div>
+          </div>
+        </div>
+
+        <h1></h1>
+        <h1></h1>
+        <button type="submit" (click)="saveData()" class="btn btn-default" [disabled]="applicantForm.invalid" routerLink="/home">Submit
+        </button>
+
+      </div>
+    </div>
+  </div>
+</form>

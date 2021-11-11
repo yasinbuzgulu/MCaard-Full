@@ -1,0 +1,36 @@
+<hr>
+
+<form [formGroup]="cityOpportunityForm" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <h3>Add Card</h3>
+    <div class="form-group">
+
+      <div></div>
+      <mat-form-field style="width: 30%">
+        <mat-label>City selection</mat-label>
+        <mat-select class="form-control" formControlName="city" id="city">
+          <mat-option *ngFor="let city of cities" [value]="city">
+            {{city.cityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field style="width: 30%">
+        <mat-label>Opportunity selection</mat-label>
+        <mat-select class="form-control" formControlName="opportunity" id="opportunity">
+          <mat-option *ngFor="let opportunity of opportunities" [value]="opportunity"> {{opportunity.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-label>Opportunity Price</mat-label>
+      <input type="number" class="form-control" style="width: 30%" placeholder="Enter per year price"
+             formControlName="perYearPrice" id="perYearPrice"
+             min="0">
+      <div></div>
+      <br>
+      <button type="submit" class="btn btn-primary" (click)="saveData()" [disabled]="cityOpportunityForm.invalid"
+              routerLink="/home">Submit
+      </button>
+    </div>
+  </div>
+</form>

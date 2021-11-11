@@ -1,0 +1,67 @@
+<hr>
+<div *ngIf="card">
+  <h2>{{card.applicant.name | uppercase}}'s Card Details</h2>
+  <div>
+    <div>
+      <mat-form-field appearance="fill" style="width: 30%">
+        <mat-label for="card-applicant">Applicant Selection</mat-label>
+        <mat-select id="applicant" placeholder="Applicant" [(ngModel)]="card.applicant.id">
+          <mat-option *ngFor="let applicant of applicants" [value]="applicant.id">
+            {{applicant.name}} {{applicant.surname}} {{applicant.citizenNumber}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field style="width: 30%">
+        <mat-label for="card-city">City selection</mat-label>
+        <mat-select (selectionChange)="arrangeCity($event.value)" placeholder="City" id="cityName"
+                    [(ngModel)]="myCityId"
+                    required>
+          <mat-option *ngFor="let city of cities" [value]="city.id">
+            {{city.cityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill" style="width: 30%">
+        <mat-label>Opportunity - Price</mat-label>
+        <mat-select multiple id="opportunities" required [(ngModel)]="card.cityOpportunity" [formControl]="opportunity">
+          {{myOpportunity.length}}
+          <span *ngIf="myOpportunity.values?.length > 1" class="example-additional-selection">
+        (+{{myOpportunity.values.length - 1}} {{myOpportunity.values?.length === 2 ? 'other' : 'others'}})
+      </span>
+          <mat-option *ngFor="let opportunities of opportunitiesBaseOnCity" [value]="opportunities">
+            {{opportunities.opportunity.name}} Price :{{opportunities.perYearPrice}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Desired Year</mat-label>
+        <input matInput type="number" min="0" max="5" [(ngModel)]="card.cardOpportunityYear" required>
+        <button *ngIf="card.cardOpportunityYear" matSuffix mat-icon-button aria-label="Clear"
+                (click)="card.cardOpportunityYear=null">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Card Price</mat-label>
+        <input matInput type="number" min="0" max="3000" [(ngModel)]="card.price" required>
+        <button *ngIf="card.price" matSuffix mat-icon-button aria-label="Clear" (click)="card.price=null">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-button-toggle (click)="goBack()"> Go Back</mat-button-toggle>
+      <mat-button-toggle type="submit" (click)="save()"> Save</mat-button-toggle>
+    </div>

@@ -1,0 +1,12 @@
+<hr>
+<h3>City Edition</h3>
+<div *ngIf="city">
+  <h2>{{city.cityName | uppercase}} Details</h2>
+  <div>
+    <label for="city-name">City name: </label>
+    <input id="city-name" [(ngModel)]="city.cityName" placeholder="City name"/>
+  </div>
+  <mat-button-toggle (click)="goBack()"> Go Back</mat-button-toggle>
+  <mat-button-toggle (click)="save()"> Save</mat-button-toggle>
+</div>
+

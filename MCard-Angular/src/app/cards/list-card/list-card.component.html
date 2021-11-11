@@ -1,0 +1,63 @@
+<hr>
+<h3>Card List</h3>
+
+<form>
+  <table class="table">
+    <mat-form-field appearance="standard">
+      <mat-label class="cityFilter">Filter Card</mat-label>
+      <input matInput placeholder="Filter with applicant name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Defined Year</th>
+      <th scope="col">Card Price</th>
+      <th scope="col">Expiry Date</th>
+      <th scope="col">Applicant</th>
+      <th scope="col">All Charges</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let card of cardData | filterCardTable: name ">
+      <th scope="row">{{card.id}}</th>
+      <td>{{card.cardOpportunityYear}}</td>
+      <td>{{card.price}}₺</td>
+      <td>{{card.expiryDate}}</td>
+      <td>{{card.applicant.name}} {{card.applicant.surname}} {{card.applicant.citizenNumber}}</td>
+
+      <td *ngIf="card.applicant.typeBasedOnAge!=='Normal'" >
+        <ul *ngFor="let key of card.cityOpportunity" [ngClass]="key.standing ? 'null' : 'strikethrough'">{{key.city.cityName}} {{key.opportunity.name}}
+            {{key.perYearPrice}} ₺
+        </ul>
+        <ul [ngClass]="card.standing ? 'null' : 'strikethrough'"> Card Price : {{card.price}} ₺</ul>
+        <ul> <b>Total Payment : 0₺ </b> </ul>
+      </td>
+      <td *ngIf="card.applicant.typeBasedOnAge==='Normal' && card.applicant.typeBasedOnEducation !== 'Öğrenci'">
+        <ul *ngFor="let key of card.cityOpportunity">{{key.city.cityName}} {{key.opportunity.name}} {{key.perYearPrice}}
+          ₺
+          --> {{(key.perYearPrice * card.cardOpportunityYear)}}₺
+        </ul>
+        <ul> Card Price : {{card.price}} ₺</ul>
+
+      </td>
+      <td *ngIf="card.applicant.typeBasedOnAge==='Normal' && card.applicant.typeBasedOnEducation === 'Öğrenci'">
+        <ul *ngFor="let key of card.cityOpportunity">{{key.city.cityName}} {{key.opportunity.name}} {{key.perYearPrice}}
+          ₺
+          --> {{(key.perYearPrice * card.cardOpportunityYear) *(0.8)}}₺
+        </ul>
+        <ul> Card Price : {{card.price}} ₺</ul>
+
+      </td>
+      <td>
+        <mat-button-toggle (click)="deleteCard(card.id)" class="fa fa-trash" routerLink="/home"> Delete
+        </mat-button-toggle>
+        &nbsp;&nbsp;
+        <mat-button-toggle class="fa fa-edit" [routerLink]="['/card-edition',card.id]"> Edit</mat-button-toggle>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>

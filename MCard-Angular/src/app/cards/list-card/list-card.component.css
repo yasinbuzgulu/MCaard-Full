@@ -1,0 +1,11 @@
+.table td, .table th {
+  /* padding: 0rem; */
+  vertical-align: middle;
+  border-top: 6px solid #dee2e6;
+}
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+
+}
+.strikethrough {
+  text-decoration: line-through;
+}

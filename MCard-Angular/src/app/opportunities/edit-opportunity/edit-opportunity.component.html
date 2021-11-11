@@ -1,0 +1,12 @@
+<hr>
+<h3>Opportunity Edition</h3>
+<div *ngIf="opportunity">
+  <h2>{{opportunity.name | uppercase}} Details</h2>
+  <div>
+    <label for="opportunity-name">Opportunity name: </label>
+    <input id="opportunity-name" [(ngModel)]="opportunity.name" placeholder="City name"/>
+  </div>
+  <mat-button-toggle (click)="goBack()"> Go Back</mat-button-toggle>
+  <mat-button-toggle (click)="save()"> Save</mat-button-toggle>
+</div>
+

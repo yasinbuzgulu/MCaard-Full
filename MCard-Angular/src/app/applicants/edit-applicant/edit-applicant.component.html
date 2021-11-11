@@ -1,0 +1,43 @@
+<hr>
+<h3>Applicant Edition</h3>
+<div *ngIf="applicant">
+  <h2>{{applicant.name | uppercase}} Details</h2>
+  <div>
+    <label for="applicant-name">Applicant name: </label>
+    <input id="applicant-name" [(ngModel)]="applicant.name" placeholder="Applicant name"/>
+  </div>
+  <div>
+    <label for="applicant-surname">Applicant name: </label>
+    <input id="applicant-surname" [(ngModel)]="applicant.surname" placeholder="Applicant urname"/>
+  </div>
+  <div>
+    <label for="applicant-citizenshipNumber">Applicant Citizenship Number: </label>
+    <input disabled id="applicant-citizenshipNumber" [(ngModel)]="applicant.citizenNumber" placeholder="Applicant Citizenship Number"/>
+  </div>
+  <div>
+    <label for="applicant-birthDate">Applicant Birth Date: </label>
+    <input id="applicant-birthDate" [(ngModel)]="applicant.birthDate" placeholder="Applicant Birth Date"/>
+  </div>
+  <div>
+    <label>Age Group</label>
+    <select [(ngModel)]="applicant.typeBasedOnAge"  id="ageGroup" required="required" >
+      <option value="" disabled>Please select age group</option>
+      <option value="Çocuk">Kid</option>
+      <option value="Normal">Normal</option>
+      <option value="Yaşlı">Elder</option>
+    </select>
+  </div>
+  <div >
+    <label>Educational Status</label>
+    <select [(ngModel)]="applicant.typeBasedOnEducation"  id="educationalStatus" required="required" >
+      <option value="" disabled>Please select educational status</option>
+      <option value="Öğrenci">Student</option>
+      <option value="Sivil">Civil</option>
+      <option value="--">Neither</option>
+    </select>
+  </div>
+  <mat-button-toggle (click)="goBack()"> Go Back</mat-button-toggle>
+  <mat-button-toggle (click)="save()" > Save </mat-button-toggle>
+
+</div>
+

@@ -1,0 +1,14 @@
+.cityOpportunityFilter {
+  width: 100%;
+
+}
+.mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  /* width: 180px; */
+}
+.mat-form-field-flex, .ng-tns-c73-5 {
+  width: 400px;
+}

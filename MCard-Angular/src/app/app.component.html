@@ -1,0 +1,80 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">MCard</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">Home </a>
+      </li>
+      <li class="nav-item">
+        <a href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="users">Users</a>
+      </li>
+      <button mat-button *ngIf="isLoggedIn" [matMenuTriggerFor]="applicantMenu" style="color: #cccccc">Applicant</button>
+      <mat-menu #applicantMenu="matMenu">
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="applicant-addition">Applicant
+          Addition
+        </button>
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="applicant-list">Applicant
+          List
+        </button>
+      </mat-menu>
+      <button mat-button *ngIf="isLoggedIn" [matMenuTriggerFor]="cardMenu" style="color: #cccccc">Card</button>
+      <mat-menu #cardMenu="matMenu">
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="card-addition">Card
+          Addition
+        </button>
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="card-list">Card List
+        </button>
+      </mat-menu>
+      <button mat-button *ngIf="showAdminBoard" [matMenuTriggerFor]="cityMenu" style="color: #cccccc">City</button>
+      <mat-menu #cityMenu="matMenu">
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="city-addition">City
+          Addition
+        </button>
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="city-list">City List
+        </button>
+      </mat-menu>
+      <button mat-button *ngIf="showAdminBoard" [matMenuTriggerFor]="opportunityMenu" style="color: #cccccc">Opportunity</button>
+      <mat-menu #opportunityMenu="matMenu">
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="opportunity-addition">
+          Opportunity
+          Addition
+        </button>
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="opportunity-list">
+          Opportunity List
+        </button>
+      </mat-menu>
+      <button mat-button *ngIf="showAdminBoard" [matMenuTriggerFor]="cityOpportunityMenu" style="color: #cccccc">City & Opportunity</button>
+      <mat-menu #cityOpportunityMenu="matMenu">
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="cityOpportunity-addition">
+          City & Opportunity Addition
+        </button>
+        <button mat-menu-item href="/user" class="nav-link" *ngIf="showAdminBoard" routerLink="cityOpportunity-list">
+          City & Opportunity List
+        </button>
+      </mat-menu>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

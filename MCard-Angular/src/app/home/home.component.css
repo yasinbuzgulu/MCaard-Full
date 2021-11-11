@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  position: relative;
+  top: 0;
+  z-index: 999;
+  font-family: 'Poppins', sans-serif;
+}
+.navbar{
+  color: white;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+  margin-top: 50px;
+}
+.navbar-nav {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+
+  flex-direction: row;
+  width: 100%;
+  margin: auto;
+  padding: 0;
+}
+.navbar-menu .navbar-item {
+  display: block;
+  padding: 20px;
+  border: 1px solid white;
+}
+
+.navbar-menu {
+  list-style: none;
+  white-space: nowrap;
+}
+.navbar-link {
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0rem 1rem;
+}

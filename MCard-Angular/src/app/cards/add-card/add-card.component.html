@@ -1,0 +1,62 @@
+<hr>
+
+<form [formGroup]="cardForm" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <h3>Add Card</h3>
+    <div class="form-group">
+
+      <mat-form-field style="width: 30%">
+        <mat-label>Applicant selection</mat-label>
+        <mat-select formControlName="applicant" id="applicant">
+          <mat-option *ngFor="let applicant of applicants" [value]="applicant">
+            {{applicant.name}} {{applicant.surname}} {{applicant.citizenNumber}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div></div>
+
+      <mat-form-field style="width: 30%">
+        <mat-label>City selection</mat-label>
+        <mat-select (selectionChange)="checkCity($event.value)" formControlName="cityName" id="cityName">
+          <mat-option *ngFor="let city of cities" [value]="city">
+            {{city.cityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field style="width: 30%">
+        <mat-label>Opportunity - Price</mat-label>
+        <mat-select multiple class="form-control" formControlName="opportunities" id="opportunities">
+          {{opportunities.value.length}}
+          <span *ngIf="opportunities.value?.length > 1" class="example-additional-selection">
+        (+{{opportunities.value.length - 1}} {{opportunities.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+          <mat-option *ngFor="let opportunities of opportunitiesBaseOnCity" [value]="opportunities">
+            {{opportunities.opportunity.name}} Price :{{opportunities.perYearPrice}} </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <mat-label>Desired Year</mat-label>
+      <input type="number" class="form-control" style="width: 30%" placeholder="Enter desired year"
+             formControlName="cardOpportunityYear" id="cardOpportunityYear" max="5" min="0">
+
+      <br>
+
+      <mat-label>Card Price</mat-label>
+      <input type="number" class="form-control" style="width: 30%" placeholder="Enter card price"
+             formControlName="price" id="price"
+             min="0">
+      <div></div>
+
+      <br>
+
+      <button type="submit" class="btn btn-primary" (click)="saveData()" [disabled]="cardForm.invalid"
+              routerLink="/home">Submit
+      </button>
+
+    </div>
+  </div>
+</form>

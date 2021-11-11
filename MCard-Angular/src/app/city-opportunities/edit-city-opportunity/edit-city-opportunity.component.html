@@ -1,0 +1,44 @@
+
+<hr>
+<h3>City & Opportunity Edition</h3>
+<div *ngIf="cityOpportunity">
+  <h2>{{cityOpportunity.city.cityName | uppercase}} & {{cityOpportunity.opportunity.name | uppercase}}  Details</h2>
+  <div>
+
+    <div>
+      <mat-form-field style="width: 30%">
+        <mat-label for="card-city">City selection</mat-label>
+        <mat-select disabled placeholder="City" id="cityName" [(ngModel)]="myCityId"
+                    required>
+          <mat-option *ngFor="let city of cities" [value]="city.id">
+            {{city.cityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field style="width: 30%">
+        <mat-label for="card-city">City selection</mat-label>
+        <mat-select disabled placeholder="Opportunity" id="opportunityName" [(ngModel)]="myOpportunityId"
+                    required>
+          <mat-option *ngFor="let opportunity of opportunities" [value]="opportunity.id">
+            {{opportunity.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Per Year Price</mat-label>
+        <input matInput type="number" min="0" max="3000" [(ngModel)]="cityOpportunity.perYearPrice" required>
+        <button *ngIf="cityOpportunity.perYearPrice" matSuffix mat-icon-button aria-label="Clear" (click)="cityOpportunity.perYearPrice=null">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+  </div>
+  <mat-button-toggle (click)="goBack()"> Go Back</mat-button-toggle>
+  <mat-button-toggle (click)="save()"> Save </mat-button-toggle>
+</div>

@@ -1,0 +1,40 @@
+<br>
+<h3>Applicant List</h3>
+<table class="table">
+  <div class="applicantFilter">
+    <mat-form-field appearance="standard">
+      <mat-label class="applicantFilter">Filter Applicant</mat-label>
+      <input matInput placeholder="Filter by applicant name or surname" [(ngModel)]="name">
+    </mat-form-field>
+  </div>
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">Surname</th>
+    <th scope="col">Citizenship Number</th>
+    <th scope="col">Birth Date</th>
+    <th scope="col">Age Group</th>
+    <th scope="col">Educational Status</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let applicant of applicantData | filterApplicantTable: (name || surname)">
+    <th scope="row">{{applicant.id}}</th>
+    <td>{{applicant.name}}</td>
+    <td>{{applicant.surname}}</td>
+    <td>{{applicant.citizenNumber}}</td>
+    <td>{{applicant.birthDate}}</td>
+    <td>{{applicant.typeBasedOnAge}}</td>
+    <td>{{applicant.typeBasedOnEducation}}</td>
+
+    <td>
+      <mat-button-toggle (click)="deleteApplicant(applicant.id)" class="fa fa-trash" routerLink="/home"> Delete
+      </mat-button-toggle>
+      &nbsp;&nbsp;<mat-button-toggle class="fa fa-edit" [routerLink]="['/applicant-edition',applicant.id]"> Edit
+    </mat-button-toggle>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+<br>
+<h3>Opportunity List</h3>
+<table class="table">
+  <mat-form-field appearance="standard">
+  <mat-label class="cityFilter">Filter Opportunity</mat-label>
+  <input matInput placeholder="Filter by opportunity name" [(ngModel)]="name">
+</mat-form-field>
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let opportunity of opportunityData | filterOpportunityTable : name">
+    <th scope="row">{{opportunity.id}}</th>
+    <td>{{opportunity.name}}</td>
+    <td>
+      <mat-button-toggle (click)="deleteOpportunity(opportunity.id)" class="fa fa-trash" routerLink="/home"> Delete</mat-button-toggle>
+      &nbsp;&nbsp;<mat-button-toggle class="fa fa-edit" [routerLink]="['/opportunity-edition',opportunity.id]"> Edit
+    </mat-button-toggle>
+
+    </td>
+  </tr>
+  </tbody>
+</table>

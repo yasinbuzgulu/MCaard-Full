@@ -1,0 +1,23 @@
+<br>
+<h3>User List</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Username</th>
+    <th scope="col">E-mail</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+
+    <td>
+      <mat-button-toggle [disabled]="user.username===currentUser.username" (click)="deleteUser(user.id, user.username)" routerLink="/home" > Delete
+      </mat-button-toggle>
+      &nbsp;&nbsp;
+    </td>
+  </tr>
+  </tbody>
+</table>

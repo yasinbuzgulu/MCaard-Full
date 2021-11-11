@@ -1,0 +1,29 @@
+<br>
+
+<h3>City List</h3>
+<table class="table">
+  <mat-form-field appearance="standard">
+    <mat-label class="cityFilter">Filter City</mat-label>
+    <input matInput placeholder="Filter by city name" [(ngModel)]="cityName">
+  </mat-form-field>
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let city of cityData | cityTableFilter: cityName">
+    <th scope="row">{{city.id}}</th>
+    <td>{{city.cityName}}</td>
+    <td>
+      <mat-button-toggle (click)="deleteCity(city.id)" class="fa fa-trash" routerLink="/home"> Delete
+      </mat-button-toggle>
+      &nbsp;&nbsp;<mat-button-toggle class="fa fa-edit" [routerLink]="['/city-edition',city.id]"> Edit
+    </mat-button-toggle>
+
+    </td>
+  </tr>
+  </tbody>
+</table>

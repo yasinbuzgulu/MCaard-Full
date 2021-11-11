@@ -1,0 +1,36 @@
+<br>
+<h3>City & Opportunity List</h3>
+<table class="table">
+  <div class="cityOpportunityFilter">
+    <mat-form-field appearance="standard">
+      <mat-label class="cityFilter">Filter City & Opportunity</mat-label>
+      <input matInput placeholder="Filter by city or opportunity name" [(ngModel)]="cityName">
+    </mat-form-field>
+  </div>
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">City Name</th>
+    <th scope="col">Opportunity Name</th>
+    <th scope="col">Per Year Price</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cityOpportunity of cityOpportunities | filterCityOpportunityTable:(cityName || name)">
+    <th scope="row">{{cityOpportunity.id}}</th>
+    <td>{{cityOpportunity.city.cityName}}</td>
+    <td>{{cityOpportunity.opportunity.name}}</td>
+    <td>{{cityOpportunity.perYearPrice}}</td>
+    <td>
+      <mat-button-toggle (click)="deleteCityOpportunity(cityOpportunity.id)" class="fa fa-trash" routerLink="/home">
+        Delete
+      </mat-button-toggle>
+      &nbsp;&nbsp;<mat-button-toggle class="fa fa-edit" [routerLink]="['/cityOpportunity-edition',cityOpportunity.id]">
+      Edit
+    </mat-button-toggle>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
